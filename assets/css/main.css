@@ -1469,7 +1469,7 @@ section,
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--accent-color), transparent 90%);
+  background: var(--background-color);
   color: var(--accent-color);
   display: flex;
   align-items: center;
