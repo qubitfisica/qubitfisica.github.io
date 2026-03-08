@@ -189,8 +189,8 @@
                 <img src="assets/img/about/about-2.webp" alt="Detail shot" class="img-fluid">
               </div>
               <div class="experience-badge">
-                <span class="years">+ <span class="purecounter" data-purecounter-start="0" data-purecounter-end="400" data-purecounter-duration="2">400</span></span>
-                <span class="text">Años como<br>Ciencia Moderna</span>
+                <span class="years">≈ <span class="purecounter" data-purecounter-start="0" data-purecounter-end="" data-purecounter-duration="2">xxx</span></span>
+                <span class="text">Años como<br>ciencia</span>
               </div>
               <div class="shape-pattern"></div>
             </div>
@@ -199,7 +199,7 @@
           <div class="col-xl-6 aos-init aos-animate" data-aos="fade-left" data-aos-delay="300">
             <div class="about-content">
               <div class="section-subtitle">Ciencias Físicas</div>
-              <h2>La Física como Ciencia Moderna tiene aprox. más de 400 años.</h2>
+              <h2>Al día de hoy, la Física como ciencia tiene unos ≈ xxx años.</h2>
               <p class="lead-text">
                 Se considera que comenzó la era moderna en el siglo XVII, con el desarrollo del método científico y trabajos de Galileo
                 Galilei quien estableció primeras leyes matemáticas para describir los fenómenos de la naturaleza.
@@ -1491,6 +1491,25 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <script>
+    (function() {
+      const startYear = 1600;
+      const currentYear = new Date().getFullYear();
+      const yearsDiff = currentYear - startYear;
+
+      const counter = document.querySelector('.experience-badge .purecounter');
+      if (counter) {
+        counter.setAttribute('data-purecounter-end', yearsDiff);
+        counter.textContent = yearsDiff;
+      }
+
+      const heading = document.querySelector('.about-content h2');
+      if (heading) {
+        heading.textContent = `Al día de hoy, la Física como ciencia tiene unos ≈ ${yearsDiff} años.`;
+      }
+    })();
+  </script>
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
