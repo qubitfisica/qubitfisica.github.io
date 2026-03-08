@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://augusalterats.github.io/qubitfisica.github.io/sitemap.xml
