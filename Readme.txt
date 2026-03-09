@@ -1,6 +1,6 @@
-Thanks for downloading this template!
+Thanks for downloading this page!
 
-Template Name: Orbit
-Template URL: https://bootstrapmade.com/orbit-bootstrap-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
+Page Name: Qubit Física
+Page URL: https://qubitfisica.github.io/
+Author: augusalterats
+License: https://qubitfisica.github.io/LICENSE.md
