@@ -888,14 +888,14 @@ section,
 /*--------------------------------------------------------------
 # Inicio Section
 --------------------------------------------------------------*/
-.hero {
+.inicio {
   padding: 120px 0 80px;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, var(--background-color) 0%, color-mix(in srgb, var(--accent-color), transparent 95%) 100%);
 }
 
-.hero::before {
+.inicio::before {
   content: "";
   position: absolute;
   bottom: -30%;
@@ -906,7 +906,7 @@ section,
   pointer-events: none;
 }
 
-.hero::after {
+.inicio::after {
   content: "";
   position: absolute;
   top: 10%;
@@ -917,19 +917,19 @@ section,
   pointer-events: none;
 }
 
-.hero .hero-content {
+.inicio .inicio-content {
   position: relative;
   z-index: 2;
 }
 
-.hero .hero-content .hero-tag {
+.inicio .inicio-content .inicio-tag {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 24px;
 }
 
-.hero .hero-content .hero-tag .tag-dot {
+.inicio .inicio-content .inicio-tag .tag-dot {
   width: 10px;
   height: 10px;
   background: var(--accent-color);
@@ -937,7 +937,7 @@ section,
   animation: pulse 2s infinite;
 }
 
-.hero .hero-content .hero-tag .tag-text {
+.inicio .inicio-content .inicio-tag .tag-text {
   font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -945,7 +945,7 @@ section,
   color: var(--accent-color);
 }
 
-.hero .hero-content .hero-headline {
+.inicio .inicio-content .inicio-headline {
   font-size: 3.5rem;
   font-weight: 700;
   line-height: 1.15;
@@ -954,24 +954,24 @@ section,
 }
 
 @media (max-width: 1200px) {
-  .hero .hero-content .hero-headline {
+  .inicio .inicio-content .inicio-headline {
     font-size: 3rem;
   }
 }
 
 @media (max-width: 992px) {
-  .hero .hero-content .hero-headline {
+  .inicio .inicio-content .inicio-headline {
     font-size: 2.5rem;
   }
 }
 
 @media (max-width: 576px) {
-  .hero .hero-content .hero-headline {
+  .inicio .inicio-content .inicio-headline {
     font-size: 2rem;
   }
 }
 
-.hero .hero-content .hero-text {
+.inicio .inicio-content .inicio-text {
   font-size: 1.125rem;
   line-height: 1.7;
   color: color-mix(in srgb, var(--default-color), transparent 25%);
@@ -980,13 +980,13 @@ section,
 }
 
 @media (max-width: 768px) {
-  .hero .hero-content .hero-text {
+  .inicio .inicio-content .inicio-text {
     font-size: 1rem;
     margin-bottom: 32px;
   }
 }
 
-.hero .hero-content .hero-cta {
+.inicio .inicio-content .inicio-cta {
   display: flex;
   align-items: center;
   gap: 32px;
@@ -994,12 +994,12 @@ section,
 }
 
 @media (max-width: 576px) {
-  .hero .hero-content .hero-cta {
+  .inicio .inicio-content .inicio-cta {
     gap: 24px;
   }
 }
 
-.hero .hero-content .hero-cta .cta-button {
+.inicio .inicio-content .inicio-cta .cta-button {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -1013,21 +1013,21 @@ section,
   transition: all 0.3s ease;
 }
 
-.hero .hero-content .hero-cta .cta-button i {
+.inicio .inicio-content .inicio-cta .cta-button i {
   transition: transform 0.3s ease;
 }
 
-.hero .hero-content .hero-cta .cta-button:hover {
+.inicio .inicio-content .inicio-cta .cta-button:hover {
   background: color-mix(in srgb, var(--accent-color), black 12%);
   transform: translateY(-2px);
   box-shadow: 0 16px 40px color-mix(in srgb, var(--accent-color), transparent 55%);
 }
 
-.hero .hero-content .hero-cta .cta-button:hover i {
+.inicio .inicio-content .inicio-cta .cta-button:hover i {
   transform: translateX(4px);
 }
 
-.hero .hero-content .hero-cta .cta-link {
+.inicio .inicio-content .inicio-cta .cta-link {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -1037,21 +1037,21 @@ section,
   transition: all 0.3s ease;
 }
 
-.hero .hero-content .hero-cta .cta-link i {
+.inicio .inicio-content .inicio-cta .cta-link i {
   font-size: 1.5rem;
   color: var(--accent-color);
   transition: transform 0.3s ease;
 }
 
-.hero .hero-content .hero-cta .cta-link:hover {
+.inicio .inicio-content .inicio-cta .cta-link:hover {
   color: var(--accent-color);
 }
 
-.hero .hero-content .hero-cta .cta-link:hover i {
+.inicio .inicio-content .inicio-cta .cta-link:hover i {
   transform: scale(1.1);
 }
 
-.hero .stats-grid {
+.inicio .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
@@ -1060,13 +1060,13 @@ section,
 }
 
 @media (max-width: 576px) {
-  .hero .stats-grid {
+  .inicio .stats-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
 }
 
-.hero .stats-grid .stat-card {
+.inicio .stats-grid .stat-card {
   background: var(--surface-color);
   padding: 28px 24px;
   border-radius: 16px;
@@ -1077,45 +1077,45 @@ section,
   transition: all 0.3s ease;
 }
 
-.hero .stats-grid .stat-card:hover {
+.inicio .stats-grid .stat-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 50px color-mix(in srgb, var(--default-color), transparent 88%);
   border-color: color-mix(in srgb, var(--accent-color), transparent 70%);
 }
 
-.hero .stats-grid .stat-card.stat-card-primary {
+.inicio .stats-grid .stat-card.stat-card-primary {
   background: var(--accent-color);
   border-color: var(--accent-color);
 }
 
-.hero .stats-grid .stat-card.stat-card-primary .stat-icon-wrap {
+.inicio .stats-grid .stat-card.stat-card-primary .stat-icon-wrap {
   background: color-mix(in srgb, var(--contrast-color), transparent 80%);
 }
 
-.hero .stats-grid .stat-card.stat-card-primary .stat-icon-wrap i {
+.inicio .stats-grid .stat-card.stat-card-primary .stat-icon-wrap i {
   color: var(--contrast-color);
 }
 
-.hero .stats-grid .stat-card.stat-card-primary .stat-info .stat-value,
-.hero .stats-grid .stat-card.stat-card-primary .stat-info .stat-title {
+.inicio .stats-grid .stat-card.stat-card-primary .stat-info .stat-value,
+.inicio .stats-grid .stat-card.stat-card-primary .stat-info .stat-title {
   color: var(--contrast-color);
 }
 
-.hero .stats-grid .stat-card.stat-card-primary:hover {
+.inicio .stats-grid .stat-card.stat-card-primary:hover {
   background: color-mix(in srgb, var(--accent-color), black 10%);
   box-shadow: 0 20px 50px color-mix(in srgb, var(--accent-color), transparent 50%);
 }
 
-.hero .stats-grid .stat-card.stat-card-accent {
+.inicio .stats-grid .stat-card.stat-card-accent {
   background: color-mix(in srgb, var(--accent-color), transparent 92%);
   border-color: color-mix(in srgb, var(--accent-color), transparent 80%);
 }
 
-.hero .stats-grid .stat-card.stat-card-accent:hover {
+.inicio .stats-grid .stat-card.stat-card-accent:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 88%);
 }
 
-.hero .stats-grid .stat-card .stat-icon-wrap {
+.inicio .stats-grid .stat-card .stat-icon-wrap {
   width: 56px;
   height: 56px;
   min-width: 56px;
@@ -1126,12 +1126,12 @@ section,
   justify-content: center;
 }
 
-.hero .stats-grid .stat-card .stat-icon-wrap i {
+.inicio .stats-grid .stat-card .stat-icon-wrap i {
   font-size: 1.5rem;
   color: var(--accent-color);
 }
 
-.hero .stats-grid .stat-card .stat-info .stat-value {
+.inicio .stats-grid .stat-card .stat-info .stat-value {
   display: block;
   font-size: 1.75rem;
   font-weight: 700;
@@ -1140,7 +1140,7 @@ section,
   margin-bottom: 4px;
 }
 
-.hero .stats-grid .stat-card .stat-info .stat-title {
+.inicio .stats-grid .stat-card .stat-info .stat-title {
   font-size: 0.875rem;
   color: color-mix(in srgb, var(--default-color), transparent 35%);
 }
@@ -1160,36 +1160,36 @@ section,
 }
 
 @media (max-width: 992px) {
-  .hero {
+  .inicio {
     padding: 100px 0 60px;
   }
 
-  .hero .hero-content {
+  .inicio .inicio-content {
     text-align: center;
     margin-bottom: 48px;
   }
 
-  .hero .hero-content .hero-text {
+  .inicio .inicio-content .inicio-text {
     margin-left: auto;
     margin-right: auto;
   }
 
-  .hero .hero-content .hero-cta {
+  .inicio .inicio-content .inicio-cta {
     justify-content: center;
   }
 }
 
 /*--------------------------------------------------------------
-# About Section
+# Fisica Section
 --------------------------------------------------------------*/
-.about {
+.fisica {
   padding-top: 60px;
   background-color: var(--background-color);
   overflow: hidden;
   padding-bottom: 60px;
 }
 
-.about .about-images-wrapper {
+.fisica .fisica-images-wrapper {
   position: relative;
   padding-bottom: 60px;
   padding-right: 60px;
@@ -1197,14 +1197,14 @@ section,
 }
 
 @media (max-width: 992px) {
-  .about .about-images-wrapper {
+  .fisica .fisica-images-wrapper {
     padding-right: 0;
     padding-bottom: 0;
     margin-bottom: 40px;
   }
 }
 
-.about .image-main {
+.fisica .image-main {
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -1212,18 +1212,18 @@ section,
   box-shadow: 0 15px 40px -10px color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
-.about .image-main img {
+.fisica .image-main img {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.5s ease;
 }
 
-.about .image-main:hover img {
+.fisica .image-main:hover img {
   transform: scale(1.03);
 }
 
-.about .image-offset {
+.fisica .image-offset {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -1236,18 +1236,18 @@ section,
 }
 
 @media (max-width: 992px) {
-  .about .image-offset {
+  .fisica .image-offset {
     display: none;
   }
 }
 
-.about .image-offset img {
+.fisica .image-offset img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.about .experience-badge {
+.fisica .experience-badge {
   position: absolute;
   top: 40px;
   left: -30px;
@@ -1265,14 +1265,14 @@ section,
 }
 
 @media (max-width: 768px) {
-  .about .experience-badge {
+  .fisica .experience-badge {
     left: 20px;
     top: 20px;
     padding: 16px 20px;
   }
 }
 
-.about .experience-badge .years {
+.fisica .experience-badge .years {
   font-size: 3rem;
   font-weight: 800;
   line-height: 1;
@@ -1280,7 +1280,7 @@ section,
   margin-bottom: 4px;
 }
 
-.about .experience-badge .text {
+.fisica .experience-badge .text {
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -1289,7 +1289,7 @@ section,
   color: color-mix(in srgb, var(--contrast-color), transparent 10%);
 }
 
-.about .shape-pattern {
+.fisica .shape-pattern {
   position: absolute;
   top: -20px;
   right: 20px;
@@ -1302,12 +1302,12 @@ section,
 }
 
 @media (min-width: 1200px) {
-  .about .about-content {
+  .fisica .fisica-content {
     padding-left: 40px;
   }
 }
 
-.about .section-subtitle {
+.fisica .section-subtitle {
   display: inline-block;
   font-size: 0.875rem;
   font-weight: 700;
@@ -1319,7 +1319,7 @@ section,
   padding-left: 45px;
 }
 
-.about .section-subtitle::before {
+.fisica .section-subtitle::before {
   content: "";
   position: absolute;
   left: 0;
@@ -1330,7 +1330,7 @@ section,
   transform: translateY(-50%);
 }
 
-.about h2 {
+.fisica h2 {
   font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.2;
@@ -1338,24 +1338,24 @@ section,
 }
 
 @media (max-width: 768px) {
-  .about h2 {
+  .fisica h2 {
     font-size: 1.75rem;
   }
 }
 
-.about .lead-text {
+.fisica .lead-text {
   font-size: 1.1rem;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   margin-bottom: 16px;
   font-weight: 500;
 }
 
-.about .description {
+.fisica .description {
   color: color-mix(in srgb, var(--default-color), transparent 40%);
   line-height: 1.7;
 }
 
-.about .features-grid {
+.fisica .features-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
@@ -1363,12 +1363,12 @@ section,
 }
 
 @media (max-width: 576px) {
-  .about .features-grid {
+  .fisica .features-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.about .feature-card {
+.fisica .feature-card {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1379,23 +1379,23 @@ section,
   transition: all 0.3s ease;
 }
 
-.about .feature-card i {
+.fisica .feature-card i {
   color: var(--accent-color);
   font-size: 1.2rem;
 }
 
-.about .feature-card span {
+.fisica .feature-card span {
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--heading-color);
 }
 
-.about .feature-card:hover {
+.fisica .feature-card:hover {
   border-color: var(--accent-color);
   transform: translateX(5px);
 }
 
-.about .stats-row {
+.fisica .stats-row {
   display: flex;
   gap: 30px;
   margin-bottom: 35px;
@@ -1405,39 +1405,39 @@ section,
 }
 
 @media (max-width: 576px) {
-  .about .stats-row {
+  .fisica .stats-row {
     flex-direction: column;
     gap: 20px;
     padding: 20px 0;
   }
 }
 
-.about .stat-box {
+.fisica .stat-box {
   display: flex;
   flex-direction: column;
 }
 
-.about .stat-box .number {
+.fisica .stat-box .number {
   font-size: 1.75rem;
   font-weight: 800;
   color: var(--accent-color);
   line-height: 1.2;
 }
 
-.about .stat-box .label {
+.fisica .stat-box .label {
   font-size: 0.875rem;
   color: color-mix(in srgb, var(--default-color), transparent 40%);
   font-weight: 500;
 }
 
-.about .action-buttons {
+.fisica .action-buttons {
   display: flex;
   align-items: center;
   gap: 30px;
   flex-wrap: wrap;
 }
 
-.about .btn-primary-custom {
+.fisica .btn-primary-custom {
   background: var(--accent-color);
   color: var(--contrast-color);
   padding: 12px 30px;
@@ -1449,23 +1449,23 @@ section,
   transition: 0.3s;
 }
 
-.about .btn-primary-custom:hover {
+.fisica .btn-primary-custom:hover {
   background: var(--accent-color);
   transform: translateY(-2px);
 }
 
-.about .btn-primary-custom:hover i {
+.fisica .btn-primary-custom:hover i {
   transition: 0.3s;
   transform: translateX(4px);
 }
 
-.about .contact-info {
+.fisica .contact-info {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.about .contact-info .icon-box {
+.fisica .contact-info .icon-box {
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -1478,28 +1478,28 @@ section,
   transition: 0.3s;
 }
 
-.about .contact-info .text {
+.fisica .contact-info .text {
   display: flex;
   flex-direction: column;
   font-size: 0.875rem;
 }
 
-.about .contact-info .text span {
+.fisica .contact-info .text span {
   color: color-mix(in srgb, var(--default-color), transparent 50%);
   font-size: 0.8rem;
 }
 
-.about .contact-info .text a {
+.fisica .contact-info .text a {
   font-weight: 700;
   color: var(--heading-color);
   font-size: 1rem;
 }
 
-.about .contact-info .text a:hover {
+.fisica .contact-info .text a:hover {
   color: var(--accent-color);
 }
 
-.about .contact-info:hover .icon-box {
+.fisica .contact-info:hover .icon-box {
   background: var(--accent-color);
   color: var(--contrast-color);
 }
@@ -1517,20 +1517,20 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Services Section
+# Clasica Section
 --------------------------------------------------------------*/
-.services {
+.clasica {
   padding: 100px 0;
   background-color: var(--background-color);
 }
 
 @media (max-width: 768px) {
-  .services {
+  .clasica {
     padding: 64px 0;
   }
 }
 
-.services .service-card {
+.clasica .service-card {
   position: relative;
   padding: 32px;
   border-radius: 16px;
@@ -1542,69 +1542,69 @@ section,
   flex-direction: column;
 }
 
-.services .service-card:hover {
+.clasica .service-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
 
-.services .service-card:hover .icon-wrapper {
+.clasica .service-card:hover .icon-wrapper {
   background: var(--accent-color);
 }
 
-.services .service-card:hover .icon-wrapper i {
+.clasica .service-card:hover .icon-wrapper i {
   color: var(--contrast-color);
 }
 
-.services .service-card:hover .service-link i {
+.clasica .service-card:hover .service-link i {
   transform: translateX(4px);
 }
 
-.services .service-card.featured {
+.clasica .service-card.featured {
   background: var(--accent-color);
   transform: scale(1.02);
 }
 
 @media (min-width: 992px) {
-  .services .service-card.featured {
+  .clasica .service-card.featured {
     transform: scale(1.05);
   }
 }
 
-.services .service-card.featured:hover {
+.clasica .service-card.featured:hover {
   transform: scale(1.02) translateY(-8px);
 }
 
 @media (min-width: 992px) {
-  .services .service-card.featured:hover {
+  .clasica .service-card.featured:hover {
     transform: scale(1.05) translateY(-8px);
   }
 }
 
-.services .service-card.featured .icon-wrapper {
+.clasica .service-card.featured .icon-wrapper {
   background: color-mix(in srgb, var(--contrast-color) 20%, transparent);
 }
 
-.services .service-card.featured .icon-wrapper i {
+.clasica .service-card.featured .icon-wrapper i {
   color: var(--contrast-color);
 }
 
-.services .service-card.featured h3 {
+.clasica .service-card.featured h3 {
   color: var(--contrast-color);
 }
 
-.services .service-card.featured p {
+.clasica .service-card.featured p {
   color: color-mix(in srgb, var(--contrast-color) 85%, transparent);
 }
 
-.services .service-card.featured .service-link {
+.clasica .service-card.featured .service-link {
   color: var(--contrast-color);
 }
 
-.services .service-card.featured .service-link:hover {
+.clasica .service-card.featured .service-link:hover {
   color: var(--contrast-color);
 }
 
-.services .service-card .featured-badge {
+.clasica .service-card .featured-badge {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -1621,11 +1621,11 @@ section,
   color: var(--contrast-color);
 }
 
-.services .service-card .featured-badge i {
+.clasica .service-card .featured-badge i {
   font-size: 10px;
 }
 
-.services .service-card .icon-wrapper {
+.clasica .service-card .icon-wrapper {
   width: 56px;
   height: 56px;
   border-radius: 12px;
@@ -1637,13 +1637,13 @@ section,
   transition: all 0.3s ease;
 }
 
-.services .service-card .icon-wrapper i {
+.clasica .service-card .icon-wrapper i {
   font-size: 28px;
   color: var(--accent-color);
   transition: all 0.3s ease;
 }
 
-.services .service-card h3 {
+.clasica .service-card h3 {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.4;
@@ -1651,7 +1651,7 @@ section,
   color: var(--heading-color);
 }
 
-.services .service-card p {
+.clasica .service-card p {
   font-size: 16px;
   line-height: 1.7;
   color: var(--default-color);
@@ -1659,7 +1659,7 @@ section,
   flex-grow: 1;
 }
 
-.services .service-card .service-link {
+.clasica .service-card .service-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1669,35 +1669,35 @@ section,
   transition: all 0.3s ease;
 }
 
-.services .service-card .service-link i {
+.clasica .service-card .service-link i {
   font-size: 16px;
   transition: transform 0.3s ease;
 }
 
-.services .service-card .service-link:hover {
+.clasica .service-card .service-link:hover {
   color: color-mix(in srgb, var(--accent-color) 80%, black);
 }
 
 @media (max-width: 768px) {
-  .services .service-card {
+  .clasica .service-card {
     padding: 24px;
   }
 
-  .services .service-card .icon-wrapper {
+  .clasica .service-card .icon-wrapper {
     width: 48px;
     height: 48px;
   }
 
-  .services .service-card .icon-wrapper i {
+  .clasica .service-card .icon-wrapper i {
     font-size: 24px;
   }
 
-  .services .service-card h3 {
+  .clasica .service-card h3 {
     font-size: 18px;
   }
 }
 
-.services .stats-row {
+.clasica .stats-row {
   margin-top: 64px;
   padding: 48px 32px;
   background: color-mix(in srgb, var(--accent-color) 8%, transparent);
@@ -1705,17 +1705,17 @@ section,
 }
 
 @media (max-width: 768px) {
-  .services .stats-row {
+  .clasica .stats-row {
     margin-top: 48px;
     padding: 32px 24px;
   }
 }
 
-.services .stats-row .stat-item {
+.clasica .stats-row .stat-item {
   text-align: center;
 }
 
-.services .stats-row .stat-item .stat-number {
+.clasica .stats-row .stat-item .stat-number {
   display: block;
   font-size: 36px;
   font-weight: 800;
@@ -1725,12 +1725,12 @@ section,
 }
 
 @media (max-width: 768px) {
-  .services .stats-row .stat-item .stat-number {
+  .clasica .stats-row .stat-item .stat-number {
     font-size: 28px;
   }
 }
 
-.services .stats-row .stat-item .stat-label {
+.clasica .stats-row .stat-item .stat-label {
   display: block;
   font-size: 14px;
   font-weight: 600;
@@ -1740,7 +1740,7 @@ section,
 }
 
 @media (max-width: 768px) {
-  .services .stats-row .stat-item .stat-label {
+  .clasica .stats-row .stat-item .stat-label {
     font-size: 12px;
   }
 }
