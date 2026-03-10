@@ -1530,7 +1530,7 @@ section,
   }
 }
 
-.clasica .service-card {
+.clasica .clasica-card {
   position: relative;
   padding: 32px;
   border-radius: 16px;
@@ -1542,69 +1542,69 @@ section,
   flex-direction: column;
 }
 
-.clasica .service-card:hover {
+.clasica .clasica-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
 
-.clasica .service-card:hover .icon-wrapper {
+.clasica .clasica-card:hover .icon-wrapper {
   background: var(--accent-color);
 }
 
-.clasica .service-card:hover .icon-wrapper i {
+.clasica .clasica-card:hover .icon-wrapper i {
   color: var(--contrast-color);
 }
 
-.clasica .service-card:hover .service-link i {
+.clasica .clasica-card:hover .clasica-link i {
   transform: translateX(4px);
 }
 
-.clasica .service-card.featured {
+.clasica .clasica-card.featured {
   background: var(--accent-color);
   transform: scale(1.02);
 }
 
 @media (min-width: 992px) {
-  .clasica .service-card.featured {
+  .clasica .clasica-card.featured {
     transform: scale(1.05);
   }
 }
 
-.clasica .service-card.featured:hover {
+.clasica .clasica-card.featured:hover {
   transform: scale(1.02) translateY(-8px);
 }
 
 @media (min-width: 992px) {
-  .clasica .service-card.featured:hover {
+  .clasica .clasica-card.featured:hover {
     transform: scale(1.05) translateY(-8px);
   }
 }
 
-.clasica .service-card.featured .icon-wrapper {
+.clasica .clasica-card.featured .icon-wrapper {
   background: color-mix(in srgb, var(--contrast-color) 20%, transparent);
 }
 
-.clasica .service-card.featured .icon-wrapper i {
+.clasica .clasica-card.featured .icon-wrapper i {
   color: var(--contrast-color);
 }
 
-.clasica .service-card.featured h3 {
+.clasica .clasica-card.featured h3 {
   color: var(--contrast-color);
 }
 
-.clasica .service-card.featured p {
+.clasica .clasica-card.featured p {
   color: color-mix(in srgb, var(--contrast-color) 85%, transparent);
 }
 
-.clasica .service-card.featured .service-link {
+.clasica .clasica-card.featured .clasica-link {
   color: var(--contrast-color);
 }
 
-.clasica .service-card.featured .service-link:hover {
+.clasica .clasica-card.featured .clasica-link:hover {
   color: var(--contrast-color);
 }
 
-.clasica .service-card .featured-badge {
+.clasica .clasica-card .featured-badge {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -1621,11 +1621,11 @@ section,
   color: var(--contrast-color);
 }
 
-.clasica .service-card .featured-badge i {
+.clasica .clasica-card .featured-badge i {
   font-size: 10px;
 }
 
-.clasica .service-card .icon-wrapper {
+.clasica .clasica-card .icon-wrapper {
   width: 56px;
   height: 56px;
   border-radius: 12px;
@@ -1637,13 +1637,13 @@ section,
   transition: all 0.3s ease;
 }
 
-.clasica .service-card .icon-wrapper i {
+.clasica .clasica-card .icon-wrapper i {
   font-size: 28px;
   color: var(--accent-color);
   transition: all 0.3s ease;
 }
 
-.clasica .service-card h3 {
+.clasica .clasica-card h3 {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.4;
@@ -1651,7 +1651,7 @@ section,
   color: var(--heading-color);
 }
 
-.clasica .service-card p {
+.clasica .clasica-card p {
   font-size: 16px;
   line-height: 1.7;
   color: var(--default-color);
@@ -1659,7 +1659,7 @@ section,
   flex-grow: 1;
 }
 
-.clasica .service-card .service-link {
+.clasica .clasica-card .clasica-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1669,30 +1669,30 @@ section,
   transition: all 0.3s ease;
 }
 
-.clasica .service-card .service-link i {
+.clasica .clasica-card .clasica-link i {
   font-size: 16px;
   transition: transform 0.3s ease;
 }
 
-.clasica .service-card .service-link:hover {
+.clasica .clasica-card .clasica-link:hover {
   color: color-mix(in srgb, var(--accent-color) 80%, black);
 }
 
 @media (max-width: 768px) {
-  .clasica .service-card {
+  .clasica .clasica-card {
     padding: 24px;
   }
 
-  .clasica .service-card .icon-wrapper {
+  .clasica .clasica-card .icon-wrapper {
     width: 48px;
     height: 48px;
   }
 
-  .clasica .service-card .icon-wrapper i {
+  .clasica .clasica-card .icon-wrapper i {
     font-size: 24px;
   }
 
-  .clasica .service-card h3 {
+  .clasica .clasica-card h3 {
     font-size: 18px;
   }
 }
