@@ -3113,9 +3113,9 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Team Section
+# Sobre Mí Section
 --------------------------------------------------------------*/
-.team .team-card {
+.sobremi .team-card {
   background: var(--surface-color);
   border-radius: 16px;
   overflow: hidden;
@@ -3123,58 +3123,58 @@ section,
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.team .team-card:hover {
+.sobremi .team-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
 
-.team .team-card:hover .member-img .social-overlay {
+.sobremi .team-card:hover .member-img .social-overlay {
   opacity: 1;
 }
 
-.team .team-card:hover .member-img img {
+.sobremi .team-card:hover .member-img img {
   transform: scale(1.05);
 }
 
-.team .team-card.featured {
+.sobremi .team-card.featured {
   transform: scale(1.03);
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
 }
 
-.team .team-card.featured .member-info {
+.sobremi .team-card.featured .member-info {
   background: var(--accent-color);
 }
 
-.team .team-card.featured .member-info .member-badge {
+.sobremi .team-card.featured .member-info .member-badge {
   background: color-mix(in srgb, var(--contrast-color) 20%, transparent);
   color: var(--contrast-color);
 }
 
-.team .team-card.featured .member-info h4 {
+.sobremi .team-card.featured .member-info h4 {
   color: var(--contrast-color);
 }
 
-.team .team-card.featured .member-info p {
+.sobremi .team-card.featured .member-info p {
   color: color-mix(in srgb, var(--contrast-color) 85%, transparent);
 }
 
-.team .team-card.featured:hover {
+.sobremi .team-card.featured:hover {
   transform: scale(1.03) translateY(-8px);
 }
 
-.team .team-card .member-img {
+.sobremi .team-card .member-img {
   position: relative;
   overflow: hidden;
 }
 
-.team .team-card .member-img img {
+.sobremi .team-card .member-img img {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.team .team-card .member-img .social-overlay {
+.sobremi .team-card .member-img .social-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -3189,12 +3189,12 @@ section,
   transition: opacity 0.4s ease;
 }
 
-.team .team-card .member-img .social-overlay .social-links {
+.sobremi .team-card .member-img .social-overlay .social-links {
   display: flex;
   gap: 12px;
 }
 
-.team .team-card .member-img .social-overlay .social-links a {
+.sobremi .team-card .member-img .social-overlay .social-links a {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -3207,19 +3207,19 @@ section,
   transition: all 0.3s ease;
 }
 
-.team .team-card .member-img .social-overlay .social-links a:hover {
+.sobremi .team-card .member-img .social-overlay .social-links a:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
   transform: translateY(-4px);
 }
 
-.team .team-card .member-info {
+.sobremi .team-card .member-info {
   padding: 24px;
   text-align: center;
   transition: background 0.3s ease;
 }
 
-.team .team-card .member-info .member-badge {
+.sobremi .team-card .member-info .member-badge {
   display: inline-block;
   padding: 6px 14px;
   border-radius: 50px;
@@ -3232,24 +3232,24 @@ section,
   margin-bottom: 12px;
 }
 
-.team .team-card .member-info h4 {
+.sobremi .team-card .member-info h4 {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 4px;
   color: var(--heading-color);
 }
 
-.team .team-card .member-info p {
+.sobremi .team-card .member-info p {
   font-size: 14px;
   color: color-mix(in srgb, var(--default-color) 70%, transparent);
   margin: 0;
 }
 
-.team .team-stats {
+.sobremi .team-stats {
   margin-top: 80px;
 }
 
-.team .team-stats .stats-wrapper {
+.sobremi .team-stats .stats-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3261,18 +3261,18 @@ section,
 }
 
 @media (max-width: 768px) {
-  .team .team-stats .stats-wrapper {
+.sobremi .team-stats .stats-wrapper {
     flex-direction: column;
     gap: 32px;
     padding: 32px 24px;
   }
 }
 
-.team .team-stats .stat-item {
+.sobremi .team-stats .stat-item {
   text-align: center;
 }
 
-.team .team-stats .stat-item .stat-number {
+.sobremi .team-stats .stat-item .stat-number {
   display: block;
   font-size: 42px;
   font-weight: 800;
@@ -3281,7 +3281,7 @@ section,
   margin-bottom: 8px;
 }
 
-.team .team-stats .stat-item .stat-label {
+.sobremi .team-stats .stat-item .stat-label {
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -3289,59 +3289,59 @@ section,
   color: color-mix(in srgb, var(--default-color) 60%, transparent);
 }
 
-.team .team-stats .stat-divider {
+.sobremi .team-stats .stat-divider {
   width: 1px;
   height: 60px;
   background: color-mix(in srgb, var(--default-color) 15%, transparent);
 }
 
 @media (max-width: 768px) {
-  .team .team-stats .stat-divider {
+.sobremi .team-stats .stat-divider {
     width: 80px;
     height: 1px;
   }
 }
 
 @media (max-width: 992px) {
-  .team {
+.sobremi {
     padding: 80px 0;
   }
 
-  .team .team-card.featured {
+.sobremi .team-card.featured {
     transform: none;
   }
 
-  .team .team-card.featured:hover {
+.sobremi .team-card.featured:hover {
     transform: translateY(-8px);
   }
 
-  .team .team-stats {
+.sobremi .team-stats {
     margin-top: 60px;
   }
 }
 
 @media (max-width: 576px) {
-  .team {
+.sobremi {
     padding: 60px 0;
   }
 
-  .team .team-card .member-info {
+.sobremi .team-card .member-info {
     padding: 20px;
   }
 
-  .team .team-card .member-info h4 {
+.sobremi .team-card .member-info h4 {
     font-size: 18px;
   }
 
-  .team .team-stats {
+.sobremi .team-stats {
     margin-top: 48px;
   }
 
-  .team .team-stats .stat-item .stat-number {
+.sobremi .team-stats .stat-item .stat-number {
     font-size: 36px;
   }
 
-  .team .team-stats .stat-item .stat-label {
+.sobremi .team-stats .stat-item .stat-label {
     font-size: 12px;
   }
 }
