@@ -56,6 +56,15 @@
       position: relative;
       z-index: 2;
     }
+
+    .table-custom-header th {
+      background-color: var(--accent-color) !important;
+      color: var(--contrast-color) !important;
+    }
+    .table-striped > tbody > tr:nth-of-type(odd) > * {
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
   </style>
 </head>
 
@@ -148,16 +157,79 @@
 
             <!-- Service Overview -->
             <div class="service-overview" data-aos="fade-up" data-aos-delay="200">
+
               <div class="overview-label">
                 <span class="dot"></span>
-                <span>What We Deliver</span>
+                <span>Unidades Derivadas</span>
               </div>
-              <h2>Comprehensive Digital Transformation Solutions</h2>
-              <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Donec velit
-                neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Praesent sapien massa, convallis a
-                pellentesque nec, egestas non nisi.</p>
-              <p>Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Vivamus magna justo,
-                lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta.</p>
+
+              <h2>Comprender Unidades Derivadas</h2>
+
+              <p>
+                Las unidades físicas derivadas son aquellas que se obtienen a partir de combinaciones algebraicas
+                de las unidades fundamentales del Sistema Internacional de Unidades (SI). Estas combinaciones se
+                realizan mediante productos, cocientes o potencias de las unidades fundamentales. Las unidades derivadas
+                permiten expresar magnitudes físicas que no son básicas, pero que se definen
+                a partir de ellas mediante relaciones matemáticas.
+                Las siete unidades básicas del SI son: metro (m), kilogramo (kg), segundo (s), ampere (A), kelvin (°K),
+                mol (mol) y candela (cd). A partir de estas se construyen todas las demás. Algunas unidades derivadas
+                tienen nombre propio (como newton, joule o pascal) para simplificar su uso, aunque en realidad
+                representan combinaciones de unidades básicas. Algunas unidades derivadas tienen nombre propio (como
+                newton, joule o pascal) para simplificar su uso, aunque en realidad representan combinaciones de
+                unidades básicas. Son aquellas que se obtienen a partir de las fundamentales mediante relaciones
+                matemáticas. Ejemplos clásicos: velocidad, aceleración, fuerza, energía, trabajo, presión, potencia,
+                densidad, carga eléctrica, campo eléctrico y campo magnético.
+              </p>
+
+              <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered align-middle text-center">
+                  <thead class="table-custom-header">
+                    <tr>
+                      <th>Magnitud Física</th>
+                      <th>Unidad Derivada</th>
+                      <th>Expresión en Unidades Básicas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Velocidad</td>
+                      <td>metro por segundo (m/s)</td>
+                      <td>m·s⁻¹</td>
+                    </tr>
+                    <tr>
+                      <td>Aceleración</td>
+                      <td>metro por segundo cuadrado (m/s²)</td>
+                      <td>m·s⁻²</td>
+                    </tr>
+                    <tr>
+                      <td>Fuerza</td>
+                      <td>newton (N)</td>
+                      <td>kg·m·s⁻²</td>
+                    </tr>
+                    <tr>
+                      <td>Energía</td>
+                      <td>joule (J)</td>
+                      <td>kg·m²·s⁻²</td>
+                    </tr>
+                    <tr>
+                      <td>Presión</td>
+                      <td>pascal (Pa)</td>
+                      <td>kg·m⁻¹·s⁻²</td>
+                    </tr>
+                    <tr>
+                      <td>Potencia</td>
+                      <td>watt (W)</td>
+                      <td>kg·m²·s⁻³</td>
+                    </tr>
+                    <tr>
+                      <td>Carga eléctrica</td>
+                      <td>coulomb (C)</td>
+                      <td>A·s</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
             </div>
 
             <!-- Key Features -->
@@ -299,7 +371,7 @@
                 <li class="active">
                   <a href="definiciones_unidades.html" class="glightbox" data-type="external">
                     <i class="bi bi-arrow-right-circle"></i>
-                    <span>Definiciones de Unidades del SI</span>
+                    <span>Unidades Fundamentales del SI</span>
                   </a>
                 </li>
                 <li>
@@ -321,24 +393,23 @@
             <div class="sidebar-widget stats-widget" data-aos="fade-up" data-aos-delay="300">
               <div class="stat-item">
                 <div class="stat-number">
-                  <span data-purecounter-start="0" data-purecounter-end="850" data-purecounter-duration="1"
-                    class="purecounter"></span>+
+                  +<span data-purecounter-start="0" data-purecounter-end="7" data-purecounter-duration="1"
+                    class="purecounter"></span>
                 </div>
-                <p>Projects Delivered</p>
+                <p>Unidades Fundamentales</p>
               </div>
               <div class="stat-item">
                 <div class="stat-number">
-                  <span data-purecounter-start="0" data-purecounter-end="99" data-purecounter-duration="1"
-                    class="purecounter"></span>%
+                  +<span data-purecounter-start="0" data-purecounter-end="22" data-purecounter-duration="1"
+                    class="purecounter"></span>
                 </div>
-                <p>Client Satisfaction</p>
+                <p>Unidades Derivadas con Nombre Propio</p>
               </div>
               <div class="stat-item">
                 <div class="stat-number">
-                  <span data-purecounter-start="0" data-purecounter-end="24" data-purecounter-duration="1"
-                    class="purecounter"></span>/7
+                  <span>+∞</span>
                 </div>
-                <p>Support Available</p>
+                <p>Unidades Derivadas Totales</p>
               </div>
             </div><!-- End Stats Widget -->
 
