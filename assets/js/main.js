@@ -64,9 +64,21 @@
    * Preloader
    */
   const preloader = document.querySelector('#preloader');
+  const preloaderGif = document.querySelector('#preloader-gif');
   if (preloader) {
     window.addEventListener('load', () => {
-      preloader.remove();
+      // 1. Ocultamos el spinner circular
+      preloader.classList.add('hide-spinner');
+      
+      // 2. Mostramos tu GIF
+      if (preloaderGif) {
+        preloaderGif.style.display = 'block';
+      }
+      
+      // 3. Esperamos 2 segundos para mostrar el GIF y luego revelamos la página
+      setTimeout(() => {
+        preloader.remove();
+      }, 2000); // <-- Puedes aumentar o disminuir este 2000 (en milisegundos) dependiendo de lo largo que sea tu GIF
     });
   }
 
