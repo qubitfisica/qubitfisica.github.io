@@ -10,7 +10,8 @@
   <meta name="keywords" content="Qubit Física, Augusto Alterats, Física, enseñanza de física, PhET, profesor de física">
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="assets/img/favicon.png">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -60,9 +61,17 @@
       color: #000000;
       animation: blink 1s step-end infinite;
     }
+
     @keyframes blink {
-      from, to { opacity: 1; }
-      50% { opacity: 0; }
+
+      from,
+      to {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
     }
   </style>
 
@@ -1506,7 +1515,8 @@
 
   <!-- Preloader -->
   <div id="preloader">
-    <img id="preloader-gif" src="assets/img/qubit.gif" alt="Cargando..." style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 150px;">
+    <img id="preloader-gif" src="assets/img/qubit.gif" alt="Cargando..."
+      style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 150px;">
   </div>
 
   <!-- Vendor JS Files -->
