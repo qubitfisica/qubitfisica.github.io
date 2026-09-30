@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Simulador de Calibre Vernier | Qubit Física</title>
+  <meta name="description" content="Practicá mediciones y la lectura del nonio con el simulador interactivo de calibre Vernier de Qubit Física.">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    #particles-js { position:absolute; inset:0; width:100%; height:100%; z-index:1; }
+    .page-title { position:relative; overflow:hidden; }
+    .page-title .breadcrumbs, .page-title .title-wrapper { position:relative; z-index:2; }
+    .vernier-panel { padding:clamp(18px, 3vw, 32px); border-radius:8px; background:var(--surface-color); box-shadow:0 4px 24px color-mix(in srgb, var(--default-color), transparent 92%); }
+    .vernier-heading { display:flex; align-items:center; gap:14px; margin-bottom:8px; }
+    .vernier-heading h2 { margin:0; font-size:clamp(1.25rem, 2vw, 1.65rem); }
+    .vernier-intro { margin:8px 0 18px; line-height:1.5; }
+    #panel { display:flex; gap:14px 16px; align-items:center; flex-wrap:wrap; margin-bottom:16px; }
+    .vernier-panel button { border:0; padding:10px 15px; border-radius:6px; color:var(--contrast-color); background:var(--accent-color); font-weight:600; cursor:pointer; }
+    .vernier-panel button:hover { filter:brightness(.92); }
+    .vernier-panel label { margin:0; font-weight:600; }
+    #posicion { width:min(190px, 100%); accent-color:var(--accent-color); }
+    .vernier-panel input[type="checkbox"] { accent-color:var(--accent-color); }
+    .opciones { display:flex; flex-wrap:wrap; gap:12px 20px; margin:0 0 16px; padding:12px; border:1px solid color-mix(in srgb, var(--default-color), transparent 78%); border-radius:6px; }
+    .opciones legend { float:none; width:auto; padding:0 4px; margin:0; font-size:1rem; font-weight:600; }
+    .opciones label { display:flex; align-items:center; gap:6px; cursor:pointer; }
+    .vernier-panel select { padding:8px 10px; border:1px solid color-mix(in srgb, var(--default-color), transparent 70%); border-radius:6px; background:var(--surface-color); color:var(--default-color); font:inherit; }
+    #lectura { margin-left:auto; font-size:1.05rem; font-weight:700; color:var(--accent-color); }
+    #vernier { width:100%; max-width:100%; height:auto; display:block; border:1px solid color-mix(in srgb, var(--default-color), transparent 78%); border-radius:6px; background:#fff; touch-action:none; cursor:default; }
+    .nota { margin-top:18px; padding:14px 16px; border-left:4px solid var(--accent-color); background:color-mix(in srgb, var(--accent-color), transparent 93%); border-radius:4px; }
+    .nota ol { margin:8px 0 0; padding-left:20px; }
+    .nota li+li { margin-top:4px; }
+    .ecuacion { margin:12px 0 4px; text-align:center; font-size:1.15rem; }
+    .variables { margin:4px 0 0; font-size:.95rem; }
+    .vernier-back { display:inline-flex; align-items:center; gap:8px; margin-top:22px; }
+    @media (max-width:600px) {
+      .vernier-heading { align-items:flex-start; }
+      #panel { align-items:flex-start; }
+      #lectura { width:100%; margin-left:0; }
+    }
+  </style>
+</head>
+<body class="service-details-page">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/favicon.png" alt="" style="max-height:40px; margin-right:0">
+        <h1 class="sitename">ubit Física</h1><span>.</span>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#inicio">Inicio</a></li>
+          <li><a href="index.html#fisica">Física</a></li>
+          <li><a href="index.html#clasica" class="active">Clásica</a></li>
+          <li><a href="index.html#actividades">Actividades</a></li>
+          <li><a href="index.html#sobremi">Sobre mí</a></li>
+          <li class="dropdown"><a href="#"><span>Moderna</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="404.html">Relatividad</a></li>
+              <li><a href="#">Mecánica Cuántica</a></li>
+              <li><a href="#">Física de Partículas</a></li>
+              <li><a href="#">Física Nuclear</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="index.html#fisica">Empezar</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-title">
+      <div id="particles-js" aria-hidden="true"></div>
+      <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html"><i class="bi bi-house"></i> Inicio</a></li>
+            <li class="breadcrumb-item"><a href="index.html#clasica">Clásica</a></li>
+            <li class="breadcrumb-item"><a href="clasica/magnitudes.html#service-details">Magnitudes y Unidades</a></li>
+            <li class="breadcrumb-item active current" aria-current="page">Simulador Vernier</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="title-wrapper">
+        <h1>Simulador de Calibre Vernier</h1>
+        <p>Practicá la medición de longitudes y la lectura del nonio.</p>
+      </div>
+    </div>
+
+    <section class="service-details section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="vernier-panel">
+          <div class="vernier-heading">
+            <i class="bi bi-rulers" aria-hidden="true"></i>
+            <h2>Explorá el calibre</h2>
+          </div>
+          <p class="vernier-intro">Generá una nueva medición o arrastrá el nonio sobre la regla. También podés ajustar su posición con el deslizador. En mm/cm, la regla tiene marcas cada 1 mm; en pulgadas, cada 1/16 in. <span id="precision" hidden>La precisión es p= <strong id="resolucion">0,1 mm</strong>.</span></p>
+          <fieldset class="opciones">
+            <legend>Mostrar ayudas</legend>
+            <label><input id="mostrarPrecision" type="checkbox" aria-controls="precision"> Precisión</label>
+            <label><input id="mostrarResultado" type="checkbox" aria-controls="lectura"> Resultado de la medida</label>
+            <label><input id="mostrarCoincidencia" type="checkbox" aria-controls="vernier"> Número de coincidencia</label>
+          </fieldset>
+          <div id="panel">
+            <button id="nuevo">Nueva medición</button>
+            <label for="posicion">Posición:</label>
+            <input id="posicion" type="range" min="0" max="1200" step="1" value="374">
+            <label for="divisiones">Divisiones del nonio:</label>
+            <select id="divisiones">
+              <option value="10" selected>10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+            <label for="unidad">Unidad:</label>
+            <select id="unidad" aria-label="Unidad de la lectura">
+              <option value="mm" selected>mm</option>
+              <option value="cm">cm</option>
+              <option value="in">in</option>
+            </select>
+            <output id="lectura" aria-live="polite" hidden>L = 37,4 mm; ΔL = 0,1 mm</output>
+          </div>
+          <canvas id="vernier" width="1024" height="390" aria-label="Regla Vernier interactiva"></canvas>
+          <div class="nota">
+            <strong>Lectura:</strong>
+            <ol>
+              <li>En la regla principal, leé el valor que queda a la izquierda del cero del nonio.</li>
+              <li>Si el cero del nonio coincide exactamente con una marca de la regla principal, esa es la lectura; el nonio aporta 0 de la unidad elegida.</li>
+              <li>Si no coincide, buscá la división del nonio que coincide con una marca principal. Contá las divisiones desde el cero, multiplicá ese número por la precisión del nonio y sumá el resultado a la lectura de la regla principal.</li>
+            </ol>
+            <p class="ecuacion"><strong>L = L′ + n · p</strong></p>
+            <p class="variables">L: lectura total; L′: lectura de la regla principal; n: número de divisiones hasta la coincidencia; p: precisión del nonio; ΔL: error de la medida, tomado igual a p.</p>
+          </div>
+          <a class="btn-getstarted vernier-back" href="clasica/magnitudes.html#service-details"><i class="bi bi-arrow-left"></i> Volver a Magnitudes y Unidades</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer light-background">
+    <div class="container footer-bottom">
+      <div class="row gy-3 align-items-center">
+        <div class="col-md-8">
+          <div class="copyright">
+            <p>© <span>Copyright</span> <strong class="sitename">2026 Qubit Física</strong>. Todos los derechos reservados.</p>
+          </div>
+          <div class="credits">
+            <a href="https://github.com/qubitfisica" target="_blank" rel="noopener noreferrer">augusalterats</a> | <a href="LICENSE.md" target="_blank" rel="noopener noreferrer">Licencia MIT</a>
+          </div>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <a href="clasica/magnitudes.html#service-details">Magnitudes y Unidades</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" aria-label="Volver arriba"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
+<script>
+  const canvas = document.querySelector('#vernier');
+  const ctx = canvas.getContext('2d');
+  const range = document.querySelector('#posicion');
+  const lectura = document.querySelector('#lectura');
+  const nuevo = document.querySelector('#nuevo');
+  const divisionesInput = document.querySelector('#divisiones');
+  const unidadInput = document.querySelector('#unidad');
+  const resolucion = document.querySelector('#resolucion');
+  const precision = document.querySelector('#precision');
+  const mostrarPrecision = document.querySelector('#mostrarPrecision');
+  const mostrarResultado = document.querySelector('#mostrarResultado');
+  const mostrarCoincidencia = document.querySelector('#mostrarCoincidencia');
+  const pxPorMm = 6, x0 = 75, yRegla = 145, yNonio = 145;
+  let divisiones = Number(divisionesInput.value);
+  let unidad = unidadInput.value;
+  let pasoReglaMm = unidad === 'in' ? 25.4 / 16 : 1;
+  let medida = Number(range.value) * pasoReglaMm / divisiones;
+  let punteroActivo = null, desplazamientoArrastre = 0;
+
+  const coma = n => {
+    if (unidad === 'in') {
+      const denominador = 16 * divisiones;
+      const numerador = Math.round(n * denominador / 25.4);
+      const entero = Math.floor(numerador / denominador);
+      const resto = numerador % denominador;
+      if (!resto) return String(entero);
+      const maxComun = (a, b) => b ? maxComun(b, a % b) : a;
+      const divisor = maxComun(resto, denominador);
+      const fraccion = `${resto / divisor}/${denominador / divisor}`;
+      return entero ? `${entero} ${fraccion}` : fraccion;
+    }
+    const decimalesMm = divisiones === 10 ? 1 : divisiones === 15 ? 4 : 2;
+    const decimales = unidad === 'cm' ? decimalesMm + 1 : decimalesMm;
+    return (n * (unidad === 'cm' ? 0.1 : 1))
+      .toFixed(decimales).replace(/\.?0+$/, '').replace('.', ',');
+  };
+  function linea(x1, y1, x2, y2, ancho=1, color='#17243f') {
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.lineWidth=ancho; ctx.strokeStyle=color; ctx.stroke();
+  }
+  function texto(t,x,y,tam=14,alinear='center',color='#17243f') {
+    ctx.font = `${tam}px Arial`; ctx.textAlign=alinear; ctx.fillStyle=color; ctx.fillText(t,x,y);
+  }
+  function dibujar() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    // Regla principal sobre el fondo blanco del canvas.
+    linea(x0,yRegla,canvas.width-36,yRegla,3,'#17243f');
+    if (unidad === 'in') {
+      const mmPorDieciseisavo = 25.4 / 16;
+      for (let marca=0; ; marca++) {
+        const x=x0+marca*mmPorDieciseisavo*pxPorMm;
+        if(x>canvas.width-30) break;
+        const alto=marca%16===0?65:marca%8===0?50:marca%4===0?40:marca%2===0?33:25;
+        linea(x,yRegla,x,yRegla-alto,marca%16===0?2.3:1.25);
+        if(marca%16===0) texto(marca/16,x,yRegla-77,16);
+      }
+    } else {
+      // En mm y cm, cada marca equivale a 1 mm.
+      for (let mm=0; mm<=160; mm++) {
+        const x=x0+mm*pxPorMm;
+        if(x>canvas.width-30) break;
+        const alto= mm%10===0 ? 65 : mm%5===0 ? 47 : 29;
+        linea(x,yRegla,x,yRegla-alto,mm%10===0?2.3:1.25);
+        if(mm%10===0) texto(coma(mm),x,yRegla-77,16);
+      }
+    }
+    texto(`REGLA PRINCIPAL (${unidad})`, canvas.width/2,30,15,'center','#314986');
+    // Carro: su cero corresponde a la medida elegida.
+    const xcero=x0+medida*pxPorMm;
+    const coincidencia=Math.round((medida/pasoReglaMm-Math.floor(medida/pasoReglaMm))*divisiones)%divisiones;
+    const pasoNonio=(divisiones-1)/divisiones*pasoReglaMm;
+    const largoNonio=(divisiones-1)*pasoReglaMm*pxPorMm;
+    // El nonio comienza pegado a la línea base de la escala principal.
+    linea(xcero,yNonio+74,xcero+largoNonio,yNonio+74,1.5,'#7b8794');
+    for(let i=0;i<=divisiones;i++) {
+      const x=xcero+i*pasoNonio*pxPorMm;
+      const alto=i===0?72: i===divisiones?74:34;
+      const coincide=i===coincidencia;
+      linea(x,yNonio,x,yNonio+alto,coincide?2.8:i===0?2:1.2,coincide?'#c2410c':'#263238');
+      if(i%5===0||i===divisiones) texto(i,x,yNonio+85,12,'center','#263238');
+    }
+    texto(`NONIO: ${divisiones} divisiones (p=${coma(1/divisiones)} ${unidad})`,xcero+largoNonio/2,yNonio+145,12,'center','#263238');
+    const xCoincide=xcero+coincidencia*pasoNonio*pxPorMm;
+    if (mostrarCoincidencia.checked) {
+      texto(`Coincidencia n = ${coincidencia}`,xCoincide,yNonio+110,13,'center','#c2410c');
+    }
+    precision.hidden = !mostrarPrecision.checked;
+    lectura.hidden = !mostrarResultado.checked;
+    resolucion.textContent=`${coma(1/divisiones)} ${unidad}`;
+    lectura.textContent=`L = ${coma(medida)} ${unidad}; ΔL = ${coma(1/divisiones)} ${unidad}`;
+    range.setAttribute('aria-valuetext',`${coma(medida)} ${unidad}`);
+  }
+  function establecer(valor) {
+    const maximoPasos=Math.floor(120*divisiones/pasoReglaMm);
+    const pasos=Math.max(0,Math.min(maximoPasos,Math.round(valor*divisiones/pasoReglaMm)));
+    medida=pasos*pasoReglaMm/divisiones;
+    range.max=maximoPasos;
+    range.value=pasos;
+    dibujar();
+  }
+  [mostrarPrecision, mostrarResultado, mostrarCoincidencia].forEach(control => {
+    control.addEventListener('change', dibujar);
+  });
+  range.addEventListener('input',e=>establecer(Number(e.target.value)*pasoReglaMm/divisiones));
+  divisionesInput.addEventListener('change',e=>{
+    divisiones=Number(e.target.value);
+    establecer(medida);
+  });
+  unidadInput.addEventListener('change',e=>{
+    unidad=e.target.value;
+    pasoReglaMm=unidad==='in'?25.4/16:1;
+    establecer(medida);
+  });
+  nuevo.addEventListener('click',()=>establecer(Math.random()*120));
+  function puntoCanvas(e) {
+    const r = canvas.getBoundingClientRect();
+    return {
+      x: (e.clientX - r.left - canvas.clientLeft) * canvas.width / canvas.clientWidth,
+      y: (e.clientY - r.top - canvas.clientTop) * canvas.height / canvas.clientHeight
+    };
+  }
+  function sobreNonio(punto) {
+    const inicio = x0 + medida * pxPorMm;
+    const fin = inicio + (divisiones - 1) * pasoReglaMm * pxPorMm;
+    return punto.x >= inicio - 6 && punto.x <= fin + 6 &&
+      punto.y >= yNonio && punto.y <= yNonio + 90;
+  }
+  canvas.addEventListener('pointerdown', e => {
+    if (punteroActivo !== null || !e.isPrimary || e.button !== 0) return;
+    const punto = puntoCanvas(e);
+    if (!sobreNonio(punto)) return;
+    punteroActivo = e.pointerId;
+    // Conserva el punto de agarre para que el nonio no salte al tocarlo.
+    desplazamientoArrastre = punto.x - (x0 + medida * pxPorMm);
+    canvas.setPointerCapture(e.pointerId);
+    canvas.style.cursor = 'grabbing';
+  });
+  canvas.addEventListener('pointermove', e => {
+    const punto = puntoCanvas(e);
+    if (punteroActivo !== null) {
+      if (e.pointerId === punteroActivo) {
+        establecer((punto.x - desplazamientoArrastre - x0) / pxPorMm);
+      }
+      return;
+    }
+    canvas.style.cursor = sobreNonio(punto) ? 'grab' : 'default';
+  });
+  function terminarArrastre(e) {
+    if (e.pointerId !== punteroActivo) return;
+    punteroActivo = null;
+    if (canvas.hasPointerCapture(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
+    canvas.style.cursor = 'default';
+  }
+  canvas.addEventListener('pointerup', terminarArrastre);
+  canvas.addEventListener('pointercancel', terminarArrastre);
+  canvas.addEventListener('lostpointercapture', terminarArrastre);
+  canvas.addEventListener('pointerleave', () => {
+    if (punteroActivo === null) canvas.style.cursor = 'default';
+  });
+  dibujar();
+  if (window.tsParticles) {
+    tsParticles.load('particles-js', {
+      fullScreen: { enable: false },
+      particles: {
+        number: { value: 55 },
+        color: { value: '#0ea5e9' },
+        opacity: { value: 0.2 },
+        size: { value: { min: 1, max: 3 } },
+        links: { enable: true, distance: 150, color: '#0ea5e9', opacity: 0.2, width: 1 },
+        move: { enable: true, speed: 0.5 }
+      }
+    });
+  }
+</script>
+</body>
+</html>
