@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Simulador de Micrómetro con Nonio | Qubit Física</title>
+  <meta name="description" content="Practicá mediciones y la lectura del nonio con el simulador interactivo de micrómetro con nonio de Qubit Física.">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    #particles-js { position:absolute; inset:0; width:100%; height:100%; z-index:1; }
+    .page-title { position:relative; overflow:hidden; }
+    .page-title .breadcrumbs, .page-title .title-wrapper { position:relative; z-index:2; }
+    .micrometro-panel { padding:clamp(18px, 3vw, 32px); border-radius:8px; background:var(--surface-color); box-shadow:0 4px 24px color-mix(in srgb, var(--default-color), transparent 92%); }
+    .micrometro-heading { display:flex; align-items:center; gap:14px; margin-bottom:8px; }
+    .micrometro-heading h2 { margin:0; font-size:clamp(1.25rem, 2vw, 1.65rem); }
+    .micrometro-intro { margin:8px 0 18px; line-height:1.5; }
+    #panel { display:flex; gap:14px 16px; align-items:center; flex-wrap:wrap; margin-bottom:16px; }
+    .micrometro-panel button { border:0; padding:10px 15px; border-radius:6px; color:var(--contrast-color); background:var(--accent-color); font-weight:600; cursor:pointer; }
+    .micrometro-panel button:hover { filter:brightness(.92); }
+    .micrometro-panel label { margin:0; font-weight:600; }
+    #posicion { width:min(190px, 100%); accent-color:var(--accent-color); }
+    .micrometro-panel input[type="checkbox"] { accent-color:var(--accent-color); }
+    .opciones { display:flex; flex-wrap:wrap; gap:12px 20px; margin:0 0 16px; padding:12px; border:1px solid color-mix(in srgb, var(--default-color), transparent 78%); border-radius:6px; }
+    .opciones legend { float:none; width:auto; padding:0 4px; margin:0; font-size:1rem; font-weight:600; }
+    .opciones label { display:flex; align-items:center; gap:6px; cursor:pointer; }
+    .micrometro-panel select { padding:8px 10px; border:1px solid color-mix(in srgb, var(--default-color), transparent 70%); border-radius:6px; background:var(--surface-color); color:var(--default-color); font:inherit; }
+    #lectura { margin-left:auto; font-size:1.05rem; font-weight:700; color:var(--accent-color); }
+    #micrometro { width:100%; max-width:100%; height:auto; display:block; border:1px solid color-mix(in srgb, var(--default-color), transparent 78%); border-radius:6px; background:#fff; touch-action:none; cursor:default; }
+    .nota { margin-top:18px; padding:14px 16px; border-left:4px solid var(--accent-color); background:color-mix(in srgb, var(--accent-color), transparent 93%); border-radius:4px; }
+    .nota ol { margin:8px 0 0; padding-left:20px; }
+    .nota li+li { margin-top:4px; }
+    .ecuacion { margin:12px 0 4px; text-align:center; font-size:1.15rem; }
+    .variables { margin:4px 0 0; font-size:.95rem; }
+    .micrometro-back { display:inline-flex; align-items:center; gap:8px; margin-top:22px; }
+    @media (max-width:600px) {
+      .micrometro-heading { align-items:flex-start; }
+      #panel { align-items:flex-start; }
+      #lectura { width:100%; margin-left:0; }
+    }
+    .componentes { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:12px; background:#d7deea; border:1px solid #d7deea; border-radius:6px; overflow:hidden; }
+    .componente { padding:10px 12px; background:var(--surface-color); }
+    .componente span { display:block; margin-bottom:4px; font-size:.85rem; }
+    .componente strong { color:var(--accent-color); }
+    @media (max-width:650px) { .componentes { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body class="service-details-page">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/favicon.png" alt="" style="max-height:40px; margin-right:0">
+        <h1 class="sitename">ubit Física</h1><span>.</span>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#inicio">Inicio</a></li>
+          <li><a href="index.html#fisica">Física</a></li>
+          <li><a href="index.html#clasica" class="active">Clásica</a></li>
+          <li><a href="index.html#actividades">Actividades</a></li>
+          <li><a href="index.html#sobremi">Sobre mí</a></li>
+          <li class="dropdown"><a href="#"><span>Moderna</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="404.html">Relatividad</a></li>
+              <li><a href="#">Mecánica Cuántica</a></li>
+              <li><a href="#">Física de Partículas</a></li>
+              <li><a href="#">Física Nuclear</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="index.html#fisica">Empezar</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-title">
+      <div id="particles-js" aria-hidden="true"></div>
+      <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html"><i class="bi bi-house"></i> Inicio</a></li>
+            <li class="breadcrumb-item"><a href="index.html#clasica">Clásica</a></li>
+            <li class="breadcrumb-item"><a href="clasica/magnitudes.html#service-details">Magnitudes y Unidades</a></li>
+            <li class="breadcrumb-item active current" aria-current="page">Simulador Micrómetro</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="title-wrapper">
+        <h1>Simulador de Micrómetro con Nonio</h1>
+        <p>Practicá la lectura del manguito, el tambor y el nonio.</p>
+      </div>
+    </div>
+
+    <section class="service-details section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="micrometro-panel">
+          <div class="micrometro-heading">
+            <i class="bi bi-rulers" aria-hidden="true"></i>
+            <h2>Explorá el micrómetro</h2>
+          </div>
+  <p class="micrometro-intro">Arrastrá el tambor o usá el deslizador para cambiar la abertura. La lectura suma la escala del manguito, el tambor y la coincidencia del nonio.</p>
+  <fieldset class="opciones">
+    <legend>Mostrar ayudas</legend>
+    <label><input id="mostrarPrecision" type="checkbox"> Precisión</label>
+    <label><input id="mostrarResultado" type="checkbox"> Resultado</label>
+    <label><input id="mostrarCoincidencia" type="checkbox"> Coincidencia del nonio</label>
+  </fieldset>
+  <div id="panel">
+    <button id="nuevo" type="button">Nueva medición</button>
+    <label for="posicion">Abertura:</label>
+    <input id="posicion" type="range" min="0" max="25000" step="1" value="12734">
+    <label for="paso">Paso del tornillo:</label>
+    <select id="paso"><option value="0.5" selected>0,5 mm</option><option value="1">1 mm</option></select>
+    <label for="divisionesTambor">Tambor:</label>
+    <select id="divisionesTambor"><option value="50" selected>50 divisiones</option><option value="100">100 divisiones</option></select>
+    <label for="divisionesNonio">Nonio:</label>
+    <select id="divisionesNonio"><option value="10" selected>10 divisiones</option><option value="20">20 divisiones</option></select>
+    <output id="lectura" aria-live="polite"></output>
+  </div>
+  <canvas id="micrometro" width="1024" height="390" aria-label="Micrómetro con escalas del manguito, tambor y nonio"></canvas>
+  <div class="componentes" aria-live="polite">
+    <div class="componente"><span>Manguito</span><strong id="lecturaManguito">0 mm</strong></div>
+    <div class="componente"><span>Tambor</span><strong id="lecturaTambor">0 mm</strong></div>
+    <div class="componente"><span>Nonio</span><strong id="lecturaNonio">0 mm</strong></div>
+  </div>
+  <div class="nota">
+    <strong>Lectura:</strong>
+    <ol>
+      <li>Lea en el manguito la última marca visible antes del borde del tambor.</li>
+      <li>En la línea de referencia, lea la división del tambor alineada con ella.</li>
+      <li>Busque qué división del nonio coincide con una del tambor y sume su aporte.</li>
+    </ol>
+    <p class="ecuacion"><strong>L = L<sub>m</sub> + L<sub>t</sub> + n · p</strong></p>
+    <p class="variables">L: lectura total; L<sub>m</sub>: manguito; L<sub>t</sub>: tambor; n: división coincidente del nonio; p: precisión del nonio, calculada como paso / divisiones del tambor / divisiones del nonio.</p>
+  </div>
+          <a class="btn-getstarted micrometro-back" href="clasica/magnitudes.html#service-details"><i class="bi bi-arrow-left"></i> Volver a Magnitudes y Unidades</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer light-background">
+    <div class="container footer-bottom">
+      <div class="row gy-3 align-items-center">
+        <div class="col-md-8">
+          <div class="copyright">
+            <p>© <span>Copyright</span> <strong class="sitename">2026 Qubit Física</strong>. Todos los derechos reservados.</p>
+          </div>
+          <div class="credits">
+            <a href="https://github.com/qubitfisica" target="_blank" rel="noopener noreferrer">augusalterats</a> | <a href="LICENSE.md" target="_blank" rel="noopener noreferrer">Licencia MIT</a>
+          </div>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <a href="clasica/magnitudes.html#service-details">Magnitudes y Unidades</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" aria-label="Volver arriba"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
+<script>
+  const canvas = document.querySelector('#micrometro');
+  const ctx = canvas.getContext('2d');
+  const range = document.querySelector('#posicion');
+  const lectura = document.querySelector('#lectura');
+  const pasoInput = document.querySelector('#paso');
+  const divisionesTamborInput = document.querySelector('#divisionesTambor');
+  const divisionesNonioInput = document.querySelector('#divisionesNonio');
+  const mostrarPrecision = document.querySelector('#mostrarPrecision');
+  const mostrarResultado = document.querySelector('#mostrarResultado');
+  const mostrarCoincidencia = document.querySelector('#mostrarCoincidencia');
+  const x0 = 120, pxPorMm = 19, yReferencia = 184;
+  let paso = Number(pasoInput.value);
+  let divisionesTambor = Number(divisionesTamborInput.value);
+  let divisionesNonio = Number(divisionesNonioInput.value);
+  let medida = 12.734;
+  let punteroActivo = null, desplazamientoArrastre = 0;
+  const coma = (numero, decimales=4) => numero.toFixed(decimales).replace(/\.?0+$/, '').replace('.', ',');
+  const precisionMm = () => paso / divisionesTambor / divisionesNonio;
+  function decimalesNecesarios() {
+    const precision=precisionMm();
+    for(let decimales=0;decimales<=6;decimales++) {
+      if(Math.abs(precision*10**decimales-Math.round(precision*10**decimales))<1e-8) return Math.max(1,decimales);
+    }
+    return 6;
+  }
+  const unidadesPaso = () => Math.round(0.5 / precisionMm());
+  const totalUnidades = () => Math.round(medida / precisionMm());
+  function linea(x1,y1,x2,y2,ancho=1,color='#17243f') {
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.lineWidth=ancho; ctx.strokeStyle=color; ctx.stroke();
+  }
+  function texto(contenido,x,y,tam=13,alinear='center',color='#17243f') {
+    ctx.font=`${tam}px Arial`; ctx.textAlign=alinear; ctx.fillStyle=color; ctx.fillText(contenido,x,y);
+  }
+  function dibujar() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const xBorde=x0+medida*pxPorMm;
+    const metal=ctx.createLinearGradient(0,110,0,274);
+    metal.addColorStop(0,'#dce3ed'); metal.addColorStop(.48,'#f9fbfd'); metal.addColorStop(1,'#c7d1df');
+    ctx.fillStyle=metal; ctx.fillRect(72,135,760,112);
+    ctx.strokeStyle='#75849a'; ctx.lineWidth=1; ctx.strokeRect(72,135,760,112);
+    texto('MANGUITO · escala fija',390,117,13,'center','#314986');
+    linea(90,yReferencia,Math.min(xBorde,822),yReferencia,2,'#314986');
+    for(let marca=0;marca<=50;marca++) {
+      const mm=marca*0.5, x=x0+mm*pxPorMm;
+      if(x>xBorde-3 || x>818) break;
+      const mayor=marca%10===0, medio=marca%2===0;
+      const alto=mayor?32:medio?23:15;
+      linea(x,yReferencia,x,yReferencia-alto,mayor?1.8:1.1,'#17243f');
+      if(mayor) texto(String(mm),x,yReferencia-alto-8,12);
+    }
+    // Tambor móvil: sus marcas rodean el eje de referencia.
+    ctx.fillStyle='#aab8ca'; ctx.fillRect(xBorde,143,Math.max(12,920-xBorde),125);
+    ctx.fillStyle='#cbd5e1'; ctx.fillRect(xBorde,148,Math.max(8,920-xBorde),108);
+    ctx.strokeStyle='#68788f'; ctx.lineWidth=1.5; ctx.strokeRect(xBorde,143,Math.max(12,920-xBorde),125);
+    linea(xBorde,yReferencia,xBorde+50,yReferencia,2,'#314986');
+    const unidades=totalUnidades();
+    const marcaManguito=Math.floor(unidades/unidadesPaso());
+    const resto=unidades-marcaManguito*unidadesPaso();
+    const indiceTambor=Math.floor(resto/divisionesNonio);
+    const coincidencia=resto%divisionesNonio;
+    const pasoMarca=Math.max(3,96/divisionesTambor);
+    for(let i=-18;i<=18;i++) {
+      const indice=(indiceTambor+i+divisionesTambor)%divisionesTambor;
+      const y=yReferencia+i*pasoMarca;
+      if(y<146||y>264) continue;
+      const largo=indice%10===0?34:indice%5===0?25:16;
+      const coincide=i===0;
+      linea(xBorde+4,y,xBorde+4+largo,y,coincide?2.7:1.1,coincide?'#c2410c':'#263238');
+      if(indice%10===0) texto(String(indice),xBorde+47,y+4,10,'left','#263238');
+    }
+    texto('TAMBOR',xBorde+68,161,11,'left','#314986');
+    // Escala auxiliar esquemática del nonio; la coincidencia seleccionada se resalta.
+    const nonioY=311, nonioX=120, nonioGap=38;
+    texto(`NONIO · ${divisionesNonio} divisiones`,nonioX,292,13,'left','#314986');
+    linea(nonioX,nonioY,nonioX+(divisionesNonio-1)*nonioGap,nonioY,1.5,'#7b8794');
+    for(let i=0;i<divisionesNonio;i++) {
+      const x=nonioX+i*nonioGap, esCoincidencia=i===coincidencia;
+      linea(x,nonioY,x,nonioY+(esCoincidencia?30:17),esCoincidencia?2.6:1.1,esCoincidencia?'#c2410c':'#263238');
+      if(i%5===0||i===divisionesNonio-1) texto(String(i),x,nonioY+44,11,'center',esCoincidencia?'#c2410c':'#263238');
+    }
+    if(mostrarCoincidencia.checked) texto(`Coincidencia n = ${coincidencia}`,nonioX+(divisionesNonio-1)*nonioGap+100,nonioY+18,13,'left','#c2410c');
+    const lecturaManguito=marcaManguito*0.5;
+    const lecturaTambor=indiceTambor*paso/divisionesTambor;
+    const lecturaNonio=coincidencia*precisionMm();
+    const decimales=decimalesNecesarios();
+    document.querySelector('#lecturaManguito').textContent=`${coma(lecturaManguito,1)} mm`;
+    document.querySelector('#lecturaTambor').textContent=`${coma(lecturaTambor,decimales)} mm`;
+    document.querySelector('#lecturaNonio').textContent=`${coma(lecturaNonio,decimales)} mm`;
+    lectura.textContent=`${mostrarResultado.checked?'L = '+coma(medida,decimales)+' mm':''}${mostrarPrecision.checked?(mostrarResultado.checked?' · ':'')+'p = '+coma(precisionMm(),decimales)+' mm':''}`;
+    range.setAttribute('aria-valuetext',`${coma(medida,decimales)} mm`);
+  }
+  function establecer(valor) {
+    const maximo=25;
+    const pasos=Math.max(0,Math.min(Math.round(maximo/precisionMm()),Math.round(valor/precisionMm())));
+    medida=pasos*precisionMm();
+    range.max=String(Math.round(maximo/precisionMm()));
+    range.value=String(pasos);
+    dibujar();
+  }
+  [mostrarPrecision,mostrarResultado,mostrarCoincidencia].forEach(control=>control.addEventListener('change',dibujar));
+  range.addEventListener('input',e=>establecer(Number(e.target.value)*precisionMm()));
+  [pasoInput,divisionesTamborInput,divisionesNonioInput].forEach(control=>control.addEventListener('change',()=>{
+    paso=Number(pasoInput.value);
+    divisionesTambor=Number(divisionesTamborInput.value);
+    divisionesNonio=Number(divisionesNonioInput.value);
+    establecer(medida);
+  }));
+  document.querySelector('#nuevo').addEventListener('click',()=>establecer(Math.random()*25));
+  function puntoCanvas(e) {
+    const rect=canvas.getBoundingClientRect();
+    return {x:(e.clientX-rect.left)*canvas.width/rect.width,y:(e.clientY-rect.top)*canvas.height/rect.height};
+  }
+  function sobreTambor(punto) {
+    const xBorde=x0+medida*pxPorMm;
+    return punto.x>=xBorde&&punto.x<=920&&punto.y>=140&&punto.y<=270;
+  }
+  canvas.addEventListener('pointerdown',e=>{
+    if(punteroActivo!==null||!e.isPrimary||e.button!==0) return;
+    const punto=puntoCanvas(e);
+    if(!sobreTambor(punto)) return;
+    punteroActivo=e.pointerId;
+    desplazamientoArrastre=punto.x-(x0+medida*pxPorMm);
+    canvas.setPointerCapture(e.pointerId);
+    canvas.style.cursor='grabbing';
+  });
+  canvas.addEventListener('pointermove',e=>{
+    const punto=puntoCanvas(e);
+    if(punteroActivo!==null) {
+      if(e.pointerId===punteroActivo) establecer((punto.x-desplazamientoArrastre-x0)/pxPorMm);
+      return;
+    }
+    canvas.style.cursor=sobreTambor(punto)?'grab':'default';
+  });
+  function terminarArrastre(e) {
+    if(e.pointerId!==punteroActivo) return;
+    punteroActivo=null;
+    if(canvas.hasPointerCapture(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
+    canvas.style.cursor='default';
+  }
+  canvas.addEventListener('pointerup',terminarArrastre);
+  canvas.addEventListener('pointercancel',terminarArrastre);
+  canvas.addEventListener('lostpointercapture',terminarArrastre);
+  dibujar();
+  if (window.tsParticles) {
+    tsParticles.load('particles-js', {
+      fullScreen: { enable: false },
+      particles: {
+        number: { value: 55 },
+        color: { value: '#0ea5e9' },
+        opacity: { value: 0.2 },
+        size: { value: { min: 1, max: 3 } },
+        links: { enable: true, distance: 150, color: '#0ea5e9', opacity: 0.2, width: 1 },
+        move: { enable: true, speed: 0.5 }
+      }
+    });
+  }
+</script>
+</body>
+</html>
