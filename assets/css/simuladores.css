@@ -1,0 +1,43 @@
+.control-grupo { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.control-grupo > label { flex-shrink: 0; }
+footer, .nota, #lectura { overflow-wrap: anywhere; }
+.zoom-instrumento { min-width: 0; margin-bottom: 16px; }
+.zoom-controles { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.zoom-controles > span { font-weight: bold; }
+.zoom-controles button { min-width: 44px; min-height: 44px; }
+.zoom-controles button:disabled { opacity: .45; cursor: default; }
+.zoom-controles button:focus-visible, .escala-ventana:focus-visible { outline: 3px solid #c2410c; outline-offset: 2px; }
+.zoom-nivel { min-width: 65px; text-align: center; font-weight: bold; }
+.zoom-ayuda { margin: 8px 0; color: #536078; font-size: .9rem; }
+.escala-ventana { width: 100%; overflow-x: auto; border: 1px solid #c9d2e4; border-radius: 8px; }
+.escala-ventana canvas { max-width: none; border: 0; border-radius: 0; }
+.zoom-recorrido { display: block; margin-top: 8px; }
+.zoom-recorrido[hidden] { display: none; }
+.zoom-recorrido input[type="range"] { display: block; width: 100%; min-height: 44px; }
+
+@media (max-width: 600px) {
+  #panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  #panel > button, #panel > output { grid-column: 1 / -1; }
+  #panel > .control-grupo { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  .control-grupo > label { align-self: center; }
+  #panel input[type="range"] { width: 100%; min-width: 0; min-height: 44px; }
+  #panel select { width: 100% !important; min-width: 0; min-height: 44px; }
+  #lectura { width: 100%; margin-left: 0; font-size: 1rem; }
+  .opciones label { min-height: 44px; }
+  .opciones input[type="checkbox"] { flex-shrink: 0; width: 18px; height: 18px; }
+  .ecuacion { font-size: 1rem; }
+}
+
+/* Shared additions to the Qubit instrument panels. */
+.componentes[hidden] { display: none; }
+.componentes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin: 12px 0 16px; background: #d7deea; border: 1px solid #d7deea; border-radius: 6px; overflow: hidden; }
+.vernier-panel .componentes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.componente { padding: 10px 12px; background: var(--surface-color); }
+.componente span { display: block; margin-bottom: 4px; font-size: .85rem; }
+.componente strong { color: var(--accent-color); }
+#vernier, #micrometro { max-width: none; border: 0; border-radius: 0; }
+.zoom-recorrido input[type="range"] { width: 100%; }
+.control-grupo select { min-width: 0; }
+@media (max-width: 650px) {
+  .componentes, .vernier-panel .componentes { grid-template-columns: 1fr; }
+}

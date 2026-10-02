@@ -51,6 +51,7 @@
     .componente strong { color:var(--accent-color); }
     @media (max-width:650px) { .componentes { grid-template-columns:1fr; } }
   </style>
+  <link href="assets/css/simuladores.css" rel="stylesheet">
 </head>
 <body class="service-details-page">
   <header id="header" class="header d-flex align-items-center sticky-top">
@@ -111,24 +112,47 @@
   <p class="micrometro-intro">Arrastrá el tambor o usá el deslizador para cambiar la abertura. La lectura suma la escala del manguito, el tambor y la coincidencia del nonio.</p>
   <fieldset class="opciones">
     <legend>Mostrar ayudas</legend>
-    <label><input id="mostrarPrecision" type="checkbox"> Precisión</label>
-    <label><input id="mostrarResultado" type="checkbox"> Resultado</label>
-    <label><input id="mostrarCoincidencia" type="checkbox"> Coincidencia del nonio</label>
+    <label><input id="mostrarPrecision" type="checkbox" aria-controls="lectura"> Precisión</label>
+    <label><input id="mostrarResultado" type="checkbox" aria-controls="lectura componentesResultado"> Resultado</label>
+    <label><input id="mostrarCoincidencia" type="checkbox"> Número de coincidencia</label>
   </fieldset>
   <div id="panel">
     <button id="nuevo" type="button">Nueva medición</button>
-    <label for="posicion">Abertura:</label>
+    <div class="control-grupo">
+      <label for="posicion">Abertura:</label>
     <input id="posicion" type="range" min="0" max="25000" step="1" value="12734">
-    <label for="paso">Paso del tornillo:</label>
+    </div>
+    <div class="control-grupo">
+      <label for="paso">Paso del tornillo:</label>
     <select id="paso"><option value="0.5" selected>0,5 mm</option><option value="1">1 mm</option></select>
-    <label for="divisionesTambor">Tambor:</label>
+    </div>
+    <div class="control-grupo">
+      <label for="divisionesTambor">Tambor:</label>
     <select id="divisionesTambor"><option value="50" selected>50 divisiones</option><option value="100">100 divisiones</option></select>
-    <label for="divisionesNonio">Nonio:</label>
-    <select id="divisionesNonio"><option value="10" selected>10 divisiones</option><option value="20">20 divisiones</option></select>
+    </div>
+    <div class="control-grupo">
+      <label for="divisionesNonio">Nonio:</label>
+    <select id="divisionesNonio"><option value="10" selected>10 divisiones</option><option value="20">20 divisiones</option><option value="50">50 divisiones</option></select>
+    </div>
     <output id="lectura" aria-live="polite"></output>
   </div>
+  <section class="zoom-instrumento" aria-label="Ampliación de la escala">
+    <div class="zoom-controles">
+      <span>Zoom de la escala</span>
+      <button type="button" data-zoom="menos" aria-label="Reducir escala">−</button>
+      <output class="zoom-nivel" aria-live="polite">100 %</output>
+      <button type="button" data-zoom="mas" aria-label="Ampliar escala">+</button>
+      <button type="button" data-zoom="restablecer">Restablecer</button>
+    </div>
+    <p class="zoom-ayuda">Amplía para leer las marcas. Usa «Recorrer escala» para ver otras partes; puedes seguir arrastrando el instrumento.</p>
+    <div class="escala-ventana" tabindex="0" role="region" aria-label="Escala ampliable; usa las flechas para recorrerla">
   <canvas id="micrometro" width="1024" height="390" aria-label="Micrómetro con escalas del manguito, tambor y nonio"></canvas>
-  <div class="componentes" aria-live="polite">
+    </div>
+    <label class="zoom-recorrido" hidden>Recorrer escala
+      <input type="range" min="0" max="100" value="0" step="0.1" aria-label="Recorrer la escala ampliada">
+    </label>
+  </section>
+  <div class="componentes" id="componentesResultado" aria-live="polite" hidden>
     <div class="componente"><span>Manguito</span><strong id="lecturaManguito">0 mm</strong></div>
     <div class="componente"><span>Tambor</span><strong id="lecturaTambor">0 mm</strong></div>
     <div class="componente"><span>Nonio</span><strong id="lecturaNonio">0 mm</strong></div>
@@ -247,7 +271,7 @@
     }
     texto('TAMBOR',xBorde+68,161,11,'left','#314986');
     // Escala auxiliar esquemática del nonio; la coincidencia seleccionada se resalta.
-    const nonioY=311, nonioX=120, nonioGap=38;
+    const nonioY=311, nonioX=120, nonioGap=Math.min(38,(canvas.width-nonioX-40)/(divisionesNonio-1));
     texto(`NONIO · ${divisionesNonio} divisiones`,nonioX,292,13,'left','#314986');
     linea(nonioX,nonioY,nonioX+(divisionesNonio-1)*nonioGap,nonioY,1.5,'#7b8794');
     for(let i=0;i<divisionesNonio;i++) {
@@ -255,7 +279,7 @@
       linea(x,nonioY,x,nonioY+(esCoincidencia?30:17),esCoincidencia?2.6:1.1,esCoincidencia?'#c2410c':'#263238');
       if(i%5===0||i===divisionesNonio-1) texto(String(i),x,nonioY+44,11,'center',esCoincidencia?'#c2410c':'#263238');
     }
-    if(mostrarCoincidencia.checked) texto(`Coincidencia n = ${coincidencia}`,nonioX+(divisionesNonio-1)*nonioGap+100,nonioY+18,13,'left','#c2410c');
+    if(mostrarCoincidencia.checked) texto(`Coincidencia n = ${coincidencia}`,canvas.width-40,nonioY+68,13,'right','#c2410c');
     const lecturaManguito=marcaManguito*0.5;
     const lecturaTambor=indiceTambor*paso/divisionesTambor;
     const lecturaNonio=coincidencia*precisionMm();
@@ -263,7 +287,9 @@
     document.querySelector('#lecturaManguito').textContent=`${coma(lecturaManguito,1)} mm`;
     document.querySelector('#lecturaTambor').textContent=`${coma(lecturaTambor,decimales)} mm`;
     document.querySelector('#lecturaNonio').textContent=`${coma(lecturaNonio,decimales)} mm`;
-    lectura.textContent=`${mostrarResultado.checked?'L = '+coma(medida,decimales)+' mm':''}${mostrarPrecision.checked?(mostrarResultado.checked?' · ':'')+'p = '+coma(precisionMm(),decimales)+' mm':''}`;
+    document.querySelector('#componentesResultado').hidden = !mostrarResultado.checked;
+    lectura.hidden = !mostrarResultado.checked && !mostrarPrecision.checked;
+    lectura.textContent=`${mostrarResultado.checked?'(L ± ΔL) = ('+coma(medida,decimales)+' ± '+coma(precisionMm(),decimales)+') mm':''}${mostrarPrecision.checked?(mostrarResultado.checked?' · ':'')+'p = '+coma(precisionMm(),decimales)+' mm':''}`;
     range.setAttribute('aria-valuetext',`${coma(medida,decimales)} mm`);
   }
   function establecer(valor) {
@@ -317,7 +343,7 @@
   canvas.addEventListener('pointerup',terminarArrastre);
   canvas.addEventListener('pointercancel',terminarArrastre);
   canvas.addEventListener('lostpointercapture',terminarArrastre);
-  dibujar();
+  establecer(medida);
   if (window.tsParticles) {
     tsParticles.load('particles-js', {
       fullScreen: { enable: false },
@@ -332,5 +358,6 @@
     });
   }
 </script>
+  <script src="assets/js/simuladores-zoom.js"></script>
 </body>
 </html>

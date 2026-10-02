@@ -46,6 +46,7 @@
       #lectura { width:100%; margin-left:0; }
     }
   </style>
+  <link href="assets/css/simuladores.css" rel="stylesheet">
 </head>
 <body class="service-details-page">
   <header id="header" class="header d-flex align-items-center sticky-top">
@@ -103,33 +104,59 @@
             <i class="bi bi-rulers" aria-hidden="true"></i>
             <h2>Explorá el calibre</h2>
           </div>
-          <p class="vernier-intro">Generá una nueva medición o arrastrá el nonio sobre la regla. También podés ajustar su posición con el deslizador. En mm/cm, la regla tiene marcas cada 1 mm; en pulgadas, cada 1/16 in. <span id="precision" hidden>La precisión es p= <strong id="resolucion">0,1 mm</strong>.</span></p>
+          <p class="vernier-intro">Generá una nueva medición o arrastrá el nonio sobre la regla. También podés ajustar su posición con el deslizador. En mm/cm, la regla tiene marcas cada 1 mm; en pulgadas, cada 1/16 in.</p>
           <fieldset class="opciones">
-            <legend>Mostrar ayudas</legend>
-            <label><input id="mostrarPrecision" type="checkbox" aria-controls="precision"> Precisión</label>
-            <label><input id="mostrarResultado" type="checkbox" aria-controls="lectura"> Resultado de la medida</label>
-            <label><input id="mostrarCoincidencia" type="checkbox" aria-controls="vernier"> Número de coincidencia</label>
-          </fieldset>
-          <div id="panel">
-            <button id="nuevo">Nueva medición</button>
-            <label for="posicion">Posición:</label>
-            <input id="posicion" type="range" min="0" max="1200" step="1" value="374">
-            <label for="divisiones">Divisiones del nonio:</label>
-            <select id="divisiones">
-              <option value="10" selected>10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-            <label for="unidad">Unidad:</label>
-            <select id="unidad" aria-label="Unidad de la lectura">
-              <option value="mm" selected>mm</option>
-              <option value="cm">cm</option>
-              <option value="in">in</option>
-            </select>
-            <output id="lectura" aria-live="polite" hidden>L = 37,4 mm; ΔL = 0,1 mm</output>
-          </div>
-          <canvas id="vernier" width="1024" height="390" aria-label="Regla Vernier interactiva"></canvas>
-          <div class="nota">
+    <legend>Mostrar ayudas</legend>
+    <label><input id="mostrarPrecision" type="checkbox" aria-controls="lectura"> Precisión</label>
+    <label><input id="mostrarResultado" type="checkbox" aria-controls="lectura componentesResultado"> Resultado</label>
+    <label><input id="mostrarCoincidencia" type="checkbox" aria-controls="vernier"> Número de coincidencia</label>
+  </fieldset>
+  <div id="panel">
+    <button id="nuevo" type="button">Nueva medición</button>
+    <div class="control-grupo">
+      <label for="posicion">Posición:</label>
+    <input id="posicion" type="range" min="0" max="1200" step="1" value="374">
+    </div>
+    <div class="control-grupo">
+      <label for="divisiones">Divisiones del nonio:</label>
+    <select id="divisiones">
+      <option value="10" selected>10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+    </select>
+    </div>
+    <div class="control-grupo">
+      <label for="unidad">Unidad:</label>
+    <select id="unidad" aria-label="Unidad de la lectura">
+      <option value="mm" selected>mm</option>
+      <option value="cm">cm</option>
+      <option value="in">in</option>
+    </select>
+    </div>
+    <output id="lectura" aria-live="polite" hidden>(L ± ΔL) = (37,4 ± 0,1) mm</output>
+  </div>
+  <section class="zoom-instrumento" aria-label="Ampliación de la escala">
+    <div class="zoom-controles">
+      <span>Zoom de la escala</span>
+      <button type="button" data-zoom="menos" aria-label="Reducir escala">−</button>
+      <output class="zoom-nivel" aria-live="polite">100 %</output>
+      <button type="button" data-zoom="mas" aria-label="Ampliar escala">+</button>
+      <button type="button" data-zoom="restablecer">Restablecer</button>
+    </div>
+    <p class="zoom-ayuda">Amplía para leer las marcas. Usa «Recorrer escala» para ver otras partes; puedes seguir arrastrando el instrumento.</p>
+    <div class="escala-ventana" tabindex="0" role="region" aria-label="Escala ampliable; usa las flechas para recorrerla">
+  <canvas id="vernier" width="1024" height="390" aria-label="Regla Vernier interactiva"></canvas>
+    </div>
+    <label class="zoom-recorrido" hidden>Recorrer escala
+      <input type="range" min="0" max="100" value="0" step="0.1" aria-label="Recorrer la escala ampliada">
+    </label>
+  </section>
+  <div class="componentes" id="componentesResultado" aria-live="polite" hidden>
+    <div class="componente"><span>Regla principal</span><strong id="lecturaRegla">0 mm</strong></div>
+    <div class="componente"><span>Nonio</span><strong id="lecturaNonio">0 mm</strong></div>
+  </div>
+  <div class="nota">
             <strong>Lectura:</strong>
             <ol>
               <li>En la regla principal, leé el valor que queda a la izquierda del cero del nonio.</li>
@@ -178,12 +205,11 @@
   const nuevo = document.querySelector('#nuevo');
   const divisionesInput = document.querySelector('#divisiones');
   const unidadInput = document.querySelector('#unidad');
-  const resolucion = document.querySelector('#resolucion');
-  const precision = document.querySelector('#precision');
   const mostrarPrecision = document.querySelector('#mostrarPrecision');
   const mostrarResultado = document.querySelector('#mostrarResultado');
   const mostrarCoincidencia = document.querySelector('#mostrarCoincidencia');
-  const pxPorMm = 6, x0 = 75, yRegla = 145, yNonio = 145;
+  const x0 = 75, yRegla = 145, yNonio = 145;
+  let pxPorMm = 6;
   let divisiones = Number(divisionesInput.value);
   let unidad = unidadInput.value;
   let pasoReglaMm = unidad === 'in' ? 25.4 / 16 : 1;
@@ -214,6 +240,8 @@
     ctx.font = `${tam}px Arial`; ctx.textAlign=alinear; ctx.fillStyle=color; ctx.fillText(t,x,y);
   }
   function dibujar() {
+    // Deja espacio para el nonio completo incluso en la abertura máxima.
+    pxPorMm = Math.min(6, (canvas.width-x0-36)/(120+(divisiones-1)*pasoReglaMm));
     ctx.clearRect(0,0,canvas.width,canvas.height);
     // Regla principal sobre el fondo blanco del canvas.
     linea(x0,yRegla,canvas.width-36,yRegla,3,'#17243f');
@@ -239,7 +267,9 @@
     texto(`REGLA PRINCIPAL (${unidad})`, canvas.width/2,30,15,'center','#314986');
     // Carro: su cero corresponde a la medida elegida.
     const xcero=x0+medida*pxPorMm;
-    const coincidencia=Math.round((medida/pasoReglaMm-Math.floor(medida/pasoReglaMm))*divisiones)%divisiones;
+    const totalPasos=Math.round(medida*divisiones/pasoReglaMm);
+    const marcaRegla=Math.floor(totalPasos/divisiones);
+    const coincidencia=totalPasos%divisiones;
     const pasoNonio=(divisiones-1)/divisiones*pasoReglaMm;
     const largoNonio=(divisiones-1)*pasoReglaMm*pxPorMm;
     // El nonio comienza pegado a la línea base de la escala principal.
@@ -251,15 +281,17 @@
       linea(x,yNonio,x,yNonio+alto,coincide?2.8:i===0?2:1.2,coincide?'#c2410c':'#263238');
       if(i%5===0||i===divisiones) texto(i,x,yNonio+85,12,'center','#263238');
     }
-    texto(`NONIO: ${divisiones} divisiones (p=${coma(1/divisiones)} ${unidad})`,xcero+largoNonio/2,yNonio+145,12,'center','#263238');
+    texto(`NONIO: ${divisiones} divisiones (p=${coma(pasoReglaMm/divisiones)} ${unidad})`,xcero+largoNonio/2,yNonio+145,12,'center','#263238');
     const xCoincide=xcero+coincidencia*pasoNonio*pxPorMm;
     if (mostrarCoincidencia.checked) {
       texto(`Coincidencia n = ${coincidencia}`,xCoincide,yNonio+110,13,'center','#c2410c');
     }
-    precision.hidden = !mostrarPrecision.checked;
-    lectura.hidden = !mostrarResultado.checked;
-    resolucion.textContent=`${coma(1/divisiones)} ${unidad}`;
-    lectura.textContent=`L = ${coma(medida)} ${unidad}; ΔL = ${coma(1/divisiones)} ${unidad}`;
+    const precision=coma(pasoReglaMm/divisiones);
+    document.querySelector('#lecturaRegla').textContent=`${coma(marcaRegla*pasoReglaMm)} ${unidad}`;
+    document.querySelector('#lecturaNonio').textContent=`${coma(coincidencia*pasoReglaMm/divisiones)} ${unidad}`;
+    lectura.hidden = !mostrarResultado.checked && !mostrarPrecision.checked;
+    document.querySelector('#componentesResultado').hidden = !mostrarResultado.checked;
+    lectura.textContent=`${mostrarResultado.checked?'(L ± ΔL) = ('+coma(medida)+' ± '+precision+') '+unidad:''}${mostrarPrecision.checked?(mostrarResultado.checked?' · ':'')+'p = '+precision+' '+unidad:''}`;
     range.setAttribute('aria-valuetext',`${coma(medida)} ${unidad}`);
   }
   function establecer(valor) {
@@ -329,7 +361,7 @@
   canvas.addEventListener('pointerleave', () => {
     if (punteroActivo === null) canvas.style.cursor = 'default';
   });
-  dibujar();
+  establecer(medida);
   if (window.tsParticles) {
     tsParticles.load('particles-js', {
       fullScreen: { enable: false },
@@ -344,5 +376,6 @@
     });
   }
 </script>
+  <script src="assets/js/simuladores-zoom.js"></script>
 </body>
 </html>
